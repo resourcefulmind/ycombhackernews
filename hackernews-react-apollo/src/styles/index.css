@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input {
+  max-width: 500px;
+}
+
+.gray {
+  color: #828282;
+}
+
+.orange {
+  background-color: #ff6600;
+}
+
+.background-gray {
+  background-color: rgb(246, 246, 239);
+}
+
+.f11 {
+  font-size: 1.1rem;
+}
+
+.w85 {
+  width: 85%;
+}
+
+.button {
+  font-family: monospace;
+  font-size: 1rem;
+  color: #000100;
+  background-color: buttonface;
+  text-align: center;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  cursor: pointer;
+  max-width: 250px;
+}
+
+
