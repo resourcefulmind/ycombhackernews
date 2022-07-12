@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 //import useMutation hook to fire mutation after it is defined
 import { useMutation, gql } from '@apollo/client';
+//to aid auto redirect back to LinkList after mutation
+import { useNavigate } from 'react-router-dom';
 
 // define mutation
 const CREATE_LINK_MUTATION = gql`
@@ -20,6 +22,8 @@ const CREATE_LINK_MUTATION = gql`
 
 
 const CreateLink = () => {
+    // create navigate reference to be used within onCompleted callback
+    const navigate = useNavigate();
     //set states
     const [formState, setFormState] = useState({
         description: '', 
@@ -32,7 +36,8 @@ const CreateLink = () => {
         variables: {
             description: formState.description, 
             url: formState.url
-        }
+        }, 
+        onCompleted: () => navigate('/')
     });
 
     return (

@@ -5,6 +5,7 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 //configure ApolloClient instance to know endpoint of GraphQL API and deal with network requests
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { BrowserRouter } from 'react-router-dom';
 
 //configure ApolloClient instance to know endpoint of GraphQL API and deal with network requests
 //create httpLink to connect ApolloClient instance with graphql API
@@ -23,10 +24,12 @@ const client = new ApolloClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  //wrap app with ApolloProvider and pass client as prop
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
+  <BrowserRouter>
+    {/* wrap app with ApolloProvider and pass client as prop */}
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

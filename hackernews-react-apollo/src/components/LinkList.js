@@ -26,7 +26,7 @@ const LinkList = () => {
     return (
         <div>
             {/* Iterate over returned links */}
-            {data.feed.links.map((link) => (
+            {data?.feed.links.map((link) => (
                 <Link key={link.id} link={link} />
             ))}
         </div>
