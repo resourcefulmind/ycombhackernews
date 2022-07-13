@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 //configure ApolloClient instance to know endpoint of GraphQL API and deal with network requests
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
+import { AUTH_TOKEN } from './constants';
+import { setContext } from '@apollo/client/link/context';
 
 //configure ApolloClient instance to know endpoint of GraphQL API and deal with network requests
 //create httpLink to connect ApolloClient instance with graphql API
@@ -13,9 +15,19 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:4000'
 });
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  return {
+    headers: {
+      ...headers, 
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  };
+})
+
 //instantiate ApolloClient by passing in the httpLink a new instance of InMemoryCache
 const client = new ApolloClient({
-  link: httpLink, 
+  link: authLink.concat(httpLink), 
   cache: new InMemoryCache()
 });
 

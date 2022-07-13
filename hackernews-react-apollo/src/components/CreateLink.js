@@ -5,7 +5,7 @@ import { useMutation, gql } from '@apollo/client';
 //to aid auto redirect back to LinkList after mutation
 import { useNavigate } from 'react-router-dom';
 
-// define mutation
+// define create mutation
 const CREATE_LINK_MUTATION = gql`
     mutation PostMutation(
         $description: String!
