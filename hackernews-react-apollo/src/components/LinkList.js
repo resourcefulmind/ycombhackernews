@@ -3,7 +3,7 @@ import Link from './Link';
 import { useQuery, gql } from '@apollo/client';
 
 //use useQuery hook from Apollo Client to make queries and take care of fetching and returning data plus errors
-const FEED_QUERY = gql`
+export const FEED_QUERY = gql`
     {
         feed {
             id
@@ -12,11 +12,20 @@ const FEED_QUERY = gql`
                 createdAt
                 url
                 description
+                postedBy {
+                    id
+                    name
+                } 
+                votes {
+                    id
+                    user {
+                        id
+                    }
+                }
             }
         }
     }
-`
-;
+`;
 
 
 const LinkList = () => {
@@ -24,11 +33,15 @@ const LinkList = () => {
     const { data } = useQuery(FEED_QUERY);
 
     return (
-        <div>
-            {/* Iterate over returned links */}
-            {data?.feed.links.map((link) => (
-                <Link key={link.id} link={link} />
-            ))}
+        <div className='f7'>
+            {data && (
+                <>
+                    {/* Iterate over returned links */}
+                    {data?.feed.links.map((link, index) => (
+                        <Link key={link.id} link={link} index={index} />
+                    ))}
+                </>
+            )}
         </div>
     )
 }
